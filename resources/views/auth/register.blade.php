@@ -1,77 +1,61 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                        @csrf
+  <b-row align-h="center">
+    <b-col cols="8">
+      <b-card title="Inicio de Sesión" class="my-1">
+        <b-alert show>
+          Por favor ingresa sus datos!
+        </b-alert>
+        <b-form method="POST" action="{{ route('register') }}">
+          @csrf
+          <b-form-group
+                        label="Nombre"
+                        label-for="name">
+            <b-form-input type="text"
+                          id="name" name="name"
+                          value="{{ old('name') }}" required autofocus>
+            </b-form-input>
+          </b-form-group>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+          <b-form-group
+                        label="Correo Electrónico"
+                        label-for="email"
+                        description="Tu correo esta seguro con nosotros.">
+            <b-form-input type="email"
+                          id="email" name="email"
+                          value="{{ old('email') }}" required autofocus
+                          placeholder="">
+            </b-form-input>
+          </b-form-group>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+          <b-form-group
+                        label="Contraseña"
+                        label-for="password">
+            <b-form-input type="password"
+                          id="password" name="password" required>
+            </b-form-input>
+          </b-form-group>
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+          <b-form-group
+                        label="Confirmar contraseña"
+                        label-for="password_confirmation">
+            <b-form-input type="password"
+                          id="password_confirmation" name="password_confirmation" required>
+            </b-form-input>
+          </b-form-group>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+          <b-button type = "submit" variant="primary">
+            Confirmar registro
+          </b-button>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+          <b-button href="{{ route('login') }}" variant="link">
+            ¿Ya te has registrado?
+          </b-button>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        </b-form>
+      </b-card>
+    </b-row>
+</b-container>
 @endsection

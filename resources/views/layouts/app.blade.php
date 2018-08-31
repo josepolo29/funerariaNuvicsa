@@ -17,6 +17,11 @@
     <!-- Styles -->
 </head>
 <body>
+
+    <form action="{{ route('logout') }}" method="post" id="logout-form" style="display:none;">
+      @csrf
+    </form>
+
     <div id="app">
 
       <b-navbar toggleable type="dark" variant="dark">
@@ -32,18 +37,17 @@
               @else
                 <b-nav-item-dropdown text="Username" right>
                   <b-dropdown-item href="#">Configuracion</b-dropdown-item>
-                  <b-dropdown-item href="#">Cerrar sesión</b-dropdown-item>
+                  <b-dropdown-item @click="logout">Cerrar sesión</b-dropdown-item>
                 </b-nav-item-dropdown>
               @endguest
             </b-navbar-nav>
           </b-collapse>
       </b-navbar>
 
+      <main class="py-4">
+          @yield('content')
+      </main>
 
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
 
     <!-- Scripts -->
